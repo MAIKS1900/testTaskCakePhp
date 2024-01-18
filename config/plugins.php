@@ -20,9 +20,6 @@
  */
 
 return [
-    // Plugins only needed when in debug mode
-    'DebugKit' => ['onlyDebug' => true],
-
     // Optional plugins which are only needed in CLI commands
     'Bake' => ['onlyCli' => true, 'optional' => true],
 

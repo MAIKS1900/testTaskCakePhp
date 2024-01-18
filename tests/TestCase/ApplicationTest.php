@@ -50,21 +50,6 @@ class ApplicationTest extends TestCase
     }
 
     /**
-     * Test bootstrap add DebugKit plugin in debug mode.
-     *
-     * @return void
-     */
-    public function testBootstrapInDebug()
-    {
-        Configure::write('debug', true);
-        $app = new Application(dirname(__DIR__, 2) . '/config');
-        $app->bootstrap();
-        $plugins = $app->getPlugins();
-
-        $this->assertTrue($plugins->has('DebugKit'), 'plugins has DebugKit?');
-    }
-
-    /**
      * testMiddleware
      *
      * @return void

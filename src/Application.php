@@ -16,6 +16,9 @@ declare(strict_types=1);
  */
 namespace App;
 
+use App\Command\ParseProductsCommand;
+use App\Lib\Finder\WbProductsFinder;
+use App\Lib\WbParser\WbProductParser;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
@@ -103,5 +106,10 @@ class Application extends BaseApplication
      */
     public function services(ContainerInterface $container): void
     {
+        $container->add(ParseProductsCommand::class)
+            ->addArgument(WbProductParser::class);
+        $container->add(WbProductParser::class);
+
+        $container->add(WbProductsFinder::class);
     }
 }

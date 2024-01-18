@@ -4,11 +4,18 @@
     "homepage": "https://cakephp.org",
     "type": "project",
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://gitlab.eggheads.solutions/eggheadssolutions/backend/library/cakephp-clickhouse.git"
+        }
+    ],
     "require": {
         "php": ">=8.1",
         "cakephp/cakephp": "^5.0.1",
         "cakephp/migrations": "^4.0.0",
         "cakephp/plugin-installer": "^2.0",
+        "eggheads/cakephp-clickhouse": "^1.20",
         "mobiledetect/mobiledetectlib": "^3.74"
     },
     "require-dev": {
