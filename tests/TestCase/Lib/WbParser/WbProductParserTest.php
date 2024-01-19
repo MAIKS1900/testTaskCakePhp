@@ -13,6 +13,9 @@ class WbProductParserTest extends TestCase
 {
     use HttpClientTrait;
 
+    /**
+     * @group Integration
+     */
     public function testWbSearchWorks()
     {
         $parser = new WbProductParser();
@@ -56,7 +59,7 @@ class WbProductParserTest extends TestCase
         ]));
         $this->mockClientGet($this->makeUrlPath('query', 1), $this->newClientResponse(200, [], $body));
         $this->mockClientGet($this->makeUrlPath('query', 2), $this->newClientResponse(200, [], $body));
-        $this->mockClientGet($this->makeUrlPath('query', 3), $this->newClientResponse(200, [], $body = $this->makeBody('query', [])));
+        $this->mockClientGet($this->makeUrlPath('query', 3), $this->newClientResponse(200, [], $this->makeBody('query', [])));
 
         $parser = new WbProductParser();
         $parser->setParseConfig(new WbProductParseConfig(query: 'query', limit: 300));

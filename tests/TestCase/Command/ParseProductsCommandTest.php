@@ -55,6 +55,7 @@ class ParseProductsCommandTest extends TestCase
 
         $this->exec('parse_products queryStr');
         $this->assertExitCode(CommandInterface::CODE_SUCCESS);
+        $this->assertOutputContains('Done');
 
         $rows = $table->select("SELECT * FROM {table}", ['table' => $table->getTableName()])->rows();
         $this->assertEquals(2, count($rows));

@@ -70,6 +70,7 @@ class ParseProductsCommand extends Command
 
         $this->storeProducts($products);
 
+        $io->info('Done');
         return static::CODE_SUCCESS;
     }
 
@@ -81,7 +82,10 @@ class ParseProductsCommand extends Command
 
     private function storeProducts(array $products): void
     {
-        WbProductsClickHouseTable::getInstance()
-            ->insert($products);
+        $transaction = WbProductsClickHouseTable::getInstance()->createTransaction();
+        foreach ($products as $product) {
+            $transaction->append($product);
+        }
+        $transaction->commit();
     }
 }

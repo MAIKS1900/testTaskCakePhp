@@ -34,7 +34,7 @@ class WbProductsFinder
             WHERE query = :query
                 AND request_date = (SELECT MAX(request_date) FROM {table} WHERE query = :query)
             ORDER BY position
-            LIMIT {page}, {pageSize}", [
+            LIMIT :page, :pageSize", [
             'table' => $table->getTableName(),
             'query' => $this->query,
             'page' => ($page - 1) * $this->pageSize,
