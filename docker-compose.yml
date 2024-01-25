@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  clickhouse:
+    image: yandex/clickhouse-server
+    ports:
+      - "8123:8123"
+    volumes:
+      - clickhouse:/var/lib/clickhouse
+
+  web:
+    image: webdevops/php-nginx:8.1
+    container_name: cakephp
+    working_dir: /app/webroot
+    volumes:
+      - .:/app
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/webroot
+      - CLICKHOUSE_SERVER_HOST=clickhouse
+    ports:
+      - "8654:80"
+
+volumes:
+  clickhouse:
+    driver: local

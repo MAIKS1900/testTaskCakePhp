@@ -74,6 +74,30 @@ return [
         ],
     ],
 
+    /**
+     * ClickHouse configuration for library eggheads/cakephp-clickhouse.
+     */
+    'clickHouseServer' => [
+        'host' => 'localhost',
+        'port'     => 8123,
+        'username' => 'default',
+        'password' => '',
+        'database' => 'default',
+        'https' => true,
+        'sslCA' => CONFIG . 'CA.pem', // ключ к PEM сертификату, например, для Яндекс Облака
+    ],
+
+    'clickHouseWriters' => [
+        'temp' => [
+            'host' => 'localhost',
+            'port' => '8123',
+            'username' => 'default',
+            'password' => '',
+            'database' => 'test',
+            'https' => false,
+        ],
+    ],
+
     /*
      * Email configuration.
      *

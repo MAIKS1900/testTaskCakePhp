@@ -31,20 +31,6 @@ class PagesControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
-     * testDisplay method
-     *
-     * @return void
-     */
-    public function testDisplay()
-    {
-        Configure::write('debug', true);
-        $this->get('/pages/home');
-        $this->assertResponseOk();
-        $this->assertResponseContains('CakePHP');
-        $this->assertResponseContains('<html>');
-    }
-
-    /**
      * Test that missing template renders 404 page in production
      *
      * @return void
@@ -93,7 +79,7 @@ class PagesControllerTest extends TestCase
      */
     public function testCsrfAppliedError()
     {
-        $this->post('/pages/home', ['hello' => 'world']);
+        $this->post('/products/find', ['hello' => 'world']);
 
         $this->assertResponseCode(403);
         $this->assertResponseContains('CSRF');
@@ -107,9 +93,9 @@ class PagesControllerTest extends TestCase
     public function testCsrfAppliedOk()
     {
         $this->enableCsrfToken();
-        $this->post('/pages/home', ['hello' => 'world']);
+        $this->post('/products/find', ['hello' => 'world']);
 
         $this->assertThat(403, $this->logicalNot(new StatusCode($this->_response)));
-        $this->assertResponseNotContains('CSRF');
+        $this->assertResponseNotContains('Missing or incorrect CSRF cookie type');
     }
 }

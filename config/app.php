@@ -335,6 +335,19 @@ return [
         ],
     ],
 
+    /**
+     * ClickHouse configuration for library eggheads/cakephp-clickhouse.
+     */
+    'clickHouseServer' => [
+        'host' => env('CLICKHOUSE_SERVER_HOST', 'localhost'),
+        'port'     => env('CLICKHOUSE_SERVER_PORT', 8123),
+        'username' => env('CLICKHOUSE_SERVER_USER', 'default'),
+        'password' => env('CLICKHOUSE_SERVER_PASSWORD', ''),
+        'database' => env('CLICKHOUSE_SERVER_DATABASE'),
+        'https' => (bool) env('CLICKHOUSE_SERVER_IS_HTTPS', true),
+        'sslCA' => env('CLICKHOUSE_SERVER_SSL_CA', CONFIG . 'CA.pem'),
+    ],
+
     /*
      * Configures logging options
      */
@@ -406,5 +419,16 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+    ],
+
+    /**
+     * Wb product parser host
+     */
+    'wbParser' => [
+        'host' => 'search.wb.ru',
+        'scheme' => 'https',
+        'paths' => [
+            'product' => '/exactmatch/ru/common/v4/search',
+        ],
     ],
 ];
